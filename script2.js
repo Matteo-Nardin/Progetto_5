@@ -2,7 +2,8 @@ const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc4NDVmNTI2NzYxND
 const uri = "https://striveschool-api.herokuapp.com/api/product/";
 //che schifo
 let cardContainer = document.querySelector(".row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-5.g-3");
-console.log(cardContainer)
+let btnDetails = document.querySelector(".btn.btn-danger.details");
+console.log(cardContainer);
 
 // console.log(createData(oggetto2, uri))
 // console.log(getData(uri))
@@ -13,6 +14,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // displayProduct(data)
     deleteData(uri+"/6578937f26761400183c351f") //"657892d426761400183c350a"
 });
+
+btnDetails.addEventListener("click",()=>{
+    const goToDetails = id => {
+        window.location.assign("./details.html?picId=" + id);
+      };
+})
+
+if(window.location.pathname === "/index.html"){}
 
 function getData(uri) {
     fetch(uri, {
@@ -69,14 +78,12 @@ function displayProduct(obj){
                 <p class="fs-4">${element.price}$</p>
                 <div>
                     <button class="btn btn-danger">Modifica</button>
-                    <button class="btn btn-danger">Scopri di più</button>
+                    <button class="btn btn-danger details">Scopri di più</button>
                 </div>
             </div>
             </div>
         </div>`
     });
-
-    console.log(obj[0]._id)
 }
 
 // pagina dettaglio
